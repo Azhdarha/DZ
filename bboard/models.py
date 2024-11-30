@@ -31,8 +31,6 @@ class Rubric(models.Model):
         verbose_name='Название',
     )
 
-    cat = models.ForeignKey('Category', on_delete=models.PROTECT, null=True)
-
     def __str__(self):
         return f'{self.name}'
 
@@ -153,10 +151,44 @@ class Bb(models.Model):
         unique_together = ('title', 'published')
         verbose_name = 'Объявление'
         verbose_name_plural = 'Объявления'
+#----------------------------------------------------
 
-class Category(models.Model):
-    name = models.CharField(max_length=100, db_index=True)
-    slug = models.SlugField(max_length=255, unique=True, db_index=True)
+class Person(models.Model):
+    name = models.CharField(
+        max_length=50,
+        verbose_name='Имя',
+        validators=[validators.RegexValidator(regex='^.{1,}$')],
+        error_messages={'invalid': 'Введите 1 и более символа'},
+    )
 
-    def __str__(self):
-        return self.name
+class Сhild(models.Model):
+    name = models.CharField(
+        max_length=50,
+        verbose_name='Имя',
+        validators=[validators.RegexValidator(regex='^.{1,}$')],
+        error_messages={'invalid': 'Введите 1 и более символа'},
+    )
+
+class Сream(models.Model):
+    name = models.CharField(
+        max_length=50,
+        verbose_name='Имя',
+        validators=[validators.RegexValidator(regex='^.{1,}$')],
+        error_messages={'invalid': 'Введите 1 и более символа'},
+    )
+
+class Kiosk(models.Model):
+    name = models.CharField(
+        max_length=50,
+        verbose_name='Имя',
+        validators=[validators.RegexValidator(regex='^.{1,}$')],
+        error_messages={'invalid': 'Введите 1 и более символа'},
+    )
+
+class Parents(models.Model):
+    name = models.CharField(
+        max_length=50,
+        verbose_name='Имя',
+        validators=[validators.RegexValidator(regex='^.{1,}$')],
+        error_messages={'invalid': 'Введите 1 и более символа'},
+    )
