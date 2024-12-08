@@ -2,7 +2,7 @@ from django.core import validators
 from django.core.exceptions import ValidationError
 from django.db import models
 
-#----валидатор четных чисел
+
 def validate_even(val):
     if val % 2 != 0:
         raise ValidationError('Число %(value)s нечётное', code='odd',
