@@ -1,11 +1,12 @@
 {% extends "layout/basic.html" %}
 
 {% block content %}
-    <p>
-        {% for d in date_list %}
-            {{ d.year }}
-        {% endfor %}
-    </p>
+
+    {% with bb_count=bbs.count %}
+        {% if bb_count > 0 %}
+            <p> {{ bb_count }} </p>
+        {% endif %}
+    {% endwith %}
     {% for bb in bbs %}
     <div>
         <h2>
@@ -17,4 +18,20 @@
         <p>{{ bb.published|date:"d.m.Y H:i:s" }}</p>
     </div>
     {% endfor %}
+
+    <div>
+        {% if page.has_previous %}
+            <a href="?page={{ page.previous_page_number }}">&lt;</a>
+            &nbsp; &nbsp; | &nbsp; &nbsp;
+    {% endif %}
+
+    часть №{{ page.number }} из {{ page.paginator.num_pages }}
+
+    {% if page.has_next %}
+        &nbsp; &nbsp; | &nbsp; &nbsp;
+        <a href="?page={{ page.next_page_number }}">&gt;</a>
+
+    {% endif %}
+    </div>
+
 {% endblock %}
